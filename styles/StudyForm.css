@@ -328,3 +328,13 @@ ol li {
     position: relative;
     left: 76%;
 }
+#buttons{
+    text-align:  center;
+}
+
+input{
+    text-align: center;
+}
+input:invalid{
+    border: 2px solid red;
+}

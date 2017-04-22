@@ -1,0 +1,10 @@
+{
+    "student" : "Andrew McGuiness",
+    "department" : "Information",
+    "idNumber" : "900811",
+    "phone" : "8049331266",
+    "GPA" : "4",
+    "credits" : "126",
+    "major" : "CS",
+    "email" : "redtoorange@gmail.com"
+}

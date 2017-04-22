@@ -4,6 +4,7 @@
         Independent Study Form
     </title>
     <link href="styles/StudyForm.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 <div id="page">
@@ -11,22 +12,25 @@
         PROPOSAL FOR UNDERGRADUATE INDEPENDENT STUDY
     </div>
 
+    <form action="scripts/processForm.php" method="get">
+
+
     <div id="school">
-        School/Department: <input class="underlinedInput" type="text" style="width: 26.25%;">
+        School/Department: <input class="underlinedInput" name="department" type="text" style="width: 26.25%;" placeholder="Information and Technology" required>
     </div>
 
     <div id="blockOne" class="block">
         <span class="gapRight25">
-            Student: <input type="text" class="underlinedInput" style="width: 29.54%; margin-right: 1%">
+            Student: <input type="text" class="underlinedInput" name="student" style="width: 29.54%; margin-right: 1%" placeholder="First M. Last" required>
         </span>
 
         <span class="gapRight25">
-            ID Number: <input type="text" class="underlinedInput" style="width: 12.5%; margin-right:1.66%">
+            ID Number: <input type="text" class="underlinedInput" name="idNumber" style="width: 12.5%; margin-right:1.66%" placeholder="123456789" pattern="[0-9]{6,9}" required>
         </span>
 
 
         <span>
-            Phone Number: <input type="text" class="underlinedInput" style="width: 15.63%">
+            Phone Number: <input type="text" class="underlinedInput" name="phone" style="width: 15.63%" placeholder="(123) 456-789" required>
         </span>
 
         <div class="superText" id="studentPrint">
@@ -36,14 +40,14 @@
 
 
     <div id="blockTwo" class="block">
-        Student Cumulative GPA: <input type="text" class="underlinedInput" style="width: 14.38%; margin-right: 4.13%">
-        Total Credit Hours Completed: <input type="text" class="underlinedInput" style="width: 16.88%">
+        Student Cumulative GPA: <input type="text" class="underlinedInput" name="GPA" style="width: 14.38%; margin-right: 4.13%" placeholder="3.5" required>
+        Total Credit Hours Completed: <input type="text" class="underlinedInput" name="credits" style="width: 16.88%" placeholder="3" required>
     </div>
 
     <div id="blockThree" class="block">
-        Major and Concentration (if any): <input type="text" class="underlinedInput"
-                                                 style="width: 29.38%; margin-right: 1.13%">
-        Email: <input type="text" class="underlinedInput" style="width: 28.25%">
+        Major and Concentration (if any): <input type="text" class="underlinedInput" name="major"
+                                                 style="width: 29.38%; margin-right: 1.13%" placeholder="Computer Science" required>
+        Email: <input type="email" class="underlinedInput" name="email" style="width: 28.25%" placeholder="name@email.radford.edu" required>
     </div>
 
 
@@ -140,8 +144,8 @@
     </div>
 
     <div class="block" id="blockThirteen">
-        <input type="text" class="underlinedInput" id="studentSigIn">
-        <input type="text" class="underlinedInput" id="studentDateIn">
+        <input type="text" class="underlinedInput" id="studentSigIn" required>
+        <input type="date" class="underlinedInput" id="studentDateIn" required>
 
         <div class="subText">
             <span id="studentSigSub">
@@ -161,9 +165,9 @@
 
     <div class="block" id="block15">
         Supervising Professor:
-        <input type="text" class="underlinedInput" id="prSigIn">
-        <input type="text" class="underlinedInput" id="prNameIn">
-        <input type="text" class="underlinedInput" id="prDateIn">
+        <input type="text" class="underlinedInput" id="prSigIn" required>
+        <input type="text" class="underlinedInput" id="prNameIn" required>
+        <input type="date" class="underlinedInput" id="prDateIn" required>
         <div class="subText">
             <span class="sigSub">
                 Signature
@@ -180,9 +184,9 @@
 
     <div class="block" id="block16">
         Student's Academic Adviser:
-        <input type="text" class="underlinedInput" id="adSigIn">
-        <input type="text" class="underlinedInput" id="adNameIn">
-        <input type="text" class="underlinedInput" id="adDateIn">
+        <input type="text" class="underlinedInput" id="adSigIn" required>
+        <input type="text" class="underlinedInput" id="adNameIn" required>
+        <input type="date" class="underlinedInput" id="adDateIn" required>
         <div class="subText">
             <span class="sigSub">
                 Signature
@@ -203,7 +207,7 @@
         <div style="margin-top: 2.13%">
             <input type="text" class="underlinedInput" id="depSigIn">
             <input type="text" class="underlinedInput" id="depNameIn">
-            <input type="text" class="underlinedInput" id="depDateIn">
+            <input type="date" class="underlinedInput" id="depDateIn">
         </div>
         <div class="subText">
             <span class="sigSub">
@@ -220,9 +224,9 @@
 
     <div class="block" id="block18">
         Chair/School Director:
-        <input type="text" class="underlinedInput" id="chairSigIn">
-        <input type="text" class="underlinedInput" id="chairNameIn">
-        <input type="text" class="underlinedInput" id="chairDateIn">
+        <input type="text" class="underlinedInput" id="chairSigIn" required>
+        <input type="text" class="underlinedInput" id="chairNameIn" required>
+        <input type="date" class="underlinedInput" id="chairDateIn" required>
 
         <br>
         <div class="subText">
@@ -262,7 +266,14 @@
             Blue&mdash;Supervising Professor
         </span>
     </div>
+        <br>
+        <br>
 
+        <div id="buttons">
+            <button type="submit">Submit Form</button>
+            <button type="reset">Reset Form</button>
+        </div>
+    </form>
 
 </div>
 </body>
