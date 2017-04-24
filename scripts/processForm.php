@@ -21,16 +21,22 @@ function validateAllData()
     $success = true;
     $failures = "";
 
-
-    $department = htmlspecialchars($_GET["department"]);
+    $department = $_POST["department"];
     $department_reg = '/^[a-zA-Z]+/';
 
-    if (!preg_match($department_reg, $department)) {
+    if( isset($_POST["department"]) ){
+        $department = $_POST["department"];
+        if (!preg_match($department_reg, $department)) {
+            $success = false;
+            $failures .= "Department failed validation<br>";
+        }
+    }
+    else{
         $success = false;
-        $failures .= "Department failed validation<br>";
+        $failures .= "Department is not set<br>";
     }
 
-    $student = htmlspecialchars($_GET["studentName"]);
+    $student = htmlspecialchars($_POST["studentName"]);
     $student_reg = '/^[a-zA-Z]+ [-\'a-zA-Z]+$/';
 
     if (!preg_match($student_reg, $student)) {
@@ -39,7 +45,7 @@ function validateAllData()
     }
 
 
-    $idNumber = htmlspecialchars($_GET["idNumber"]);
+    $idNumber = htmlspecialchars($_POST["idNumber"]);
     $idNumber_reg = '/(^\d{6,9}$)/';
 
     if (!preg_match($idNumber_reg, $idNumber)) {
@@ -47,7 +53,7 @@ function validateAllData()
         $failures .= "ID failed validation<br>";
     }
 
-    $phone = htmlspecialchars($_GET["phone"]);
+    $phone = htmlspecialchars($_POST["phone"]);
     $phone_reg = '/^(\(?)([0-9]{3})(\)?)[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/';
 
     if (!preg_match($phone_reg, $phone)) {
@@ -55,7 +61,7 @@ function validateAllData()
         $failures .= "Phone failed validation<br>";
     }
 
-    $GPA = htmlspecialchars($_GET["GPA"]);
+    $GPA = htmlspecialchars($_POST["GPA"]);
     $GPA_reg = '/[0-4][\.]+[\d]/';
 
     if (!preg_match($GPA_reg, $GPA)) {
@@ -63,7 +69,7 @@ function validateAllData()
         $failures .= "GPA failed validation<br>";
     }
 
-    $credits = htmlspecialchars($_GET["credits"]);
+    $credits = htmlspecialchars($_POST["credits"]);
     $credits_reg = '/\d/';
 
     if (!preg_match($credits_reg, $credits)) {
@@ -71,7 +77,7 @@ function validateAllData()
         $failures .= "Credits failed validation<br>";
     }
 
-    $major = htmlspecialchars($_GET["major"]);
+    $major = htmlspecialchars($_POST["major"]);
     $major_reg = '/^[a-zA-Z]+/';
 
     if (!preg_match($major_reg, $major)) {
@@ -79,7 +85,7 @@ function validateAllData()
         $failures .= "Major failed validation<br>";
     }
 
-    $email = htmlspecialchars($_GET["email"]);
+    $email = htmlspecialchars($_POST["email"]);
     $email_reg = '/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\ .,;:\s@\\"]+)*)|(\\" . +\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
 
     if (!preg_match($email_reg, $email)) {
@@ -87,10 +93,10 @@ function validateAllData()
         $failures .= "Email failed validation<br>";
     }
 
-    $studyTitle = htmlspecialchars($_GET["studyTitle"]);
-    $transcript = htmlspecialchars($_GET["transcript"]);
-    $subject = htmlspecialchars($_GET["subject"]);
-    $courseNumber = htmlspecialchars($_GET["courseNumber"]);
+    $studyTitle = htmlspecialchars($_POST["studyTitle"]);
+    $transcript = htmlspecialchars($_POST["transcript"]);
+    $subject = htmlspecialchars($_POST["subject"]);
+    $courseNumber = htmlspecialchars($_POST["courseNumber"]);
 
     $semester = "VALUE NOT SET";
     $year = "9999";
@@ -98,18 +104,17 @@ function validateAllData()
 
     $year_reg = '/\d/';
 
-    if (isset($_GET["fallSem"]) && preg_match($year_reg, $_GET["fallSem"]))
-        $semester = "Fall " . htmlspecialchars($_GET["fallSem"]);
-    else if (isset($_GET["springSem"]) && preg_match($year_reg, $_GET["springSem"]))
-        $semester = "Spring " . htmlspecialchars($_GET["springSem"]);
-    else if (isset($_GET["winterSem"]) && preg_match($year_reg, $_GET["winterSem"]))
-        $semester = "Winter " . htmlspecialchars($_GET["winterSem"]);
-    else if (isset($_GET["summerSem"]) && preg_match($year_reg, $_GET["summerSem"])){
+    if (isset($_POST["fallSem"]) && preg_match($year_reg, $_POST["fallSem"]))
+        $semester = "Fall " . htmlspecialchars($_POST["fallSem"]);
+    else if (isset($_POST["springSem"]) && preg_match($year_reg, $_POST["springSem"]))
+        $semester = "Spring " . htmlspecialchars($_POST["springSem"]);
+    else if (isset($_POST["winterSem"]) && preg_match($year_reg, $_POST["winterSem"]))
+        $semester = "Winter " . htmlspecialchars($_POST["winterSem"]);
+    else if (isset($_POST["summerSem"]) && preg_match($year_reg, $_POST["summerSem"])) {
         $semester = "Summer";
-        $year = htmlspecialchars($_GET["summerSem"]);
-        $summerSemester = htmlspecialchars($_GET["summerBlock"]);
+        $year = htmlspecialchars($_POST["summerSem"]);
+        $summerSemester = htmlspecialchars($_POST["summerBlock"]);
     }
-
 
 
     if (!$success) {
@@ -132,7 +137,7 @@ function validateAllData()
     "semester" : "' . $semester . '",
     "year" : "' . $year . '",';
 
-        if($summerSemester !== null){
+        if ($summerSemester !== null) {
             $contents .= '
     "summerSemester" : "' . $summerSemester . '"';
         }
@@ -143,8 +148,12 @@ function validateAllData()
 
         createFile($fileName, $contents);
 
+        //do this for each signature
+        writeImage( "signature" );
+
         return $success;
     }
+
 
 }
 
@@ -152,4 +161,12 @@ function validateAllData()
 function createFile($fileName, $contents)
 {
     file_put_contents($fileName, $contents);
+}
+
+function writeImage( $name )
+{
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES[$name]["name"]);
+
+    move_uploaded_file($_FILES[$name]["tmp_name"], $target_file);
 }

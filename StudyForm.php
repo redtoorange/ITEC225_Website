@@ -33,7 +33,7 @@
         PROPOSAL FOR UNDERGRADUATE INDEPENDENT STUDY
     </div>
 
-    <form action="scripts/processForm.php" method="get" id="school_form">
+    <form enctype="multipart/form-data" action="scripts/processForm.php" method="post" id="school_form">
 
 
         <div id="school">
@@ -393,12 +393,25 @@
         <div class="block" id="block18">
             Chair/School Director:
 
-            <input type="text" class="underlinedInput" id="chairSigIn"
-                   onkeyup='validate( "#chairSigIn", "#chairSigInError", name_regex)' required>
+            <input type="file" class="underlinedInput signature" id="chairSigIn" name="chairSignature" required>
+            <img id="image" />
 
-            <span id="chairSigInError" class="invalidInput hidden">
-                    A signature is required from the Chair/School Director.
-            </span>
+            <script>
+                $(".signature").change(function () {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            // get loaded data and render thumbnail.
+                            document.getElementById("image").src = e.target.result;
+                        };
+
+                        // read the image file as a data URL.
+                        reader.readAsDataURL(this.files[0]);
+                    }
+
+                );
+            </script>
+
 
             <input type="text" class="underlinedInput" id="chairNameIn"
                    onkeyup='validate( "#chairNameIn", "#chairNameInError", name_regex)' required>
@@ -458,6 +471,8 @@
             <button id="submit" type="submit">Submit Form</button>
             <button type="reset">Reset Form</button>
         </div>
+
+        <input type="file" name="signature">
     </form>
 
 
