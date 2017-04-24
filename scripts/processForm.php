@@ -148,8 +148,7 @@ function validateAllData()
 
         createFile($fileName, $contents);
 
-        //do this for each signature
-        writeImage( "signature" );
+        sigTest();
 
         return $success;
     }
@@ -160,13 +159,17 @@ function validateAllData()
 
 function createFile($fileName, $contents)
 {
-    file_put_contents($fileName, $contents);
+    file_put_contents("users/" . $fileName, $contents);
 }
 
-function writeImage( $name )
-{
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES[$name]["name"]);
-
-    move_uploaded_file($_FILES[$name]["tmp_name"], $target_file);
+function sigTest(){
+    $sign = '';
+    if(isset($_POST['hdnSignature']))
+    {
+        $sign = $_POST['hdnSignature'];
+        $path = "users/test.png";
+        $sign = base64_decode($sign); //convert base64
+        file_put_contents($path, $sign); //save to file
+        //all done
+    }
 }

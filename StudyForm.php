@@ -253,11 +253,8 @@
         </div>
 
         <div class="block" id="blockThirteen">
-            <input type="text" class="underlinedInput" id="studentSigIn"
-                   onkeyup='validate( "#studentSigIn", "#studentSigInError", name_regex)' required>
-            <span id="studentSigInError" class="invalidInput hidden">
-                A signature is required from the Student.
-            </span>
+            <input type="file" class="underlinedInput signature" id="studentSigIn" required>
+
 
             <input type="text" class="underlinedInput date" id="studentDateIn" required>
 
@@ -279,58 +276,57 @@
 <!-- Supervising Professor -->
         <div class="block" id="block15">
             Supervising Professor:
-            <input type="text" class="underlinedInput" id="prSigIn"
-                   onkeyup='validate( "#prSigIn", "#prSigInError", name_regex)' required>
-            <span id="prSigInError" class="invalidInput hidden">
-                A signature is required from the Supervising Professor.
-            </span>
-            <input type="text" class="underlinedInput" id="prNameIn"
-                   onkeyup='validate( "#prNameIn", "#prNameInError", name_regex)' required>
+            <input type="file" class="underlinedInput signature" id="prSigIn" required>
+
+            <input type="text" class="underlinedInput" id="prNameIn" onkeyup='validate( "#prNameIn", "#prNameInError", name_regex)' required>
+
             <span id="prNameInError" class="invalidInput hidden">
                 A printed name is required from the Supervising Professor.
             </span>
 
 
             <input type="text" class="underlinedInput date" id="prDateIn" required>
+
+
             <div class="subText">
-            <span class="sigSub">
-                Signature
-            </span>
+                <span class="sigSub">
+                    Signature
+                </span>
                 <span class="nameSub">
-                Print Name
-            </span>
+                    Print Name
+                </span>
                 <span class="dateSub">
-                Date
-            </span>
+                    Date
+                </span>
             </div>
         </div>
 
 <!-- Academic Adviser Area -->
         <div class="block" id="block16">
             Student's Academic Adviser:
-            <input type="text" class="underlinedInput" id="adSigIn"
-                   onkeyup='validate( "#adSigIn", "#adSigInError", name_regex)' required>
-            <span id="adSigInError" class="invalidInput hidden">
-                A signature is required from the Student.
-            </span>
-            <input type="text" class="underlinedInput" id="adNameIn"
-                   onkeyup='validate( "#adNameIn", "#adNameInError", name_regex)' required>
+
+            <input type="file" class="underlinedInput signature" id="adSigIn" required>
+
+
+            <input type="text" class="underlinedInput" id="adNameIn" onkeyup='validate( "#adNameIn", "#adNameInError", name_regex)' required>
+
             <span id="adNameInError" class="invalidInput hidden">
                 A printed name is required from the Student.
             </span>
 
 
             <input type="text" class="underlinedInput date" id="adDateIn" required>
+
             <div class="subText">
-            <span class="sigSub">
-                Signature
-            </span>
+                <span class="sigSub">
+                    Signature
+                </span>
                 <span class="nameSub">
-                Print Name
-            </span>
+                    Print Name
+                </span>
                 <span class="dateSub">
-                Date
-            </span>
+                    Date
+                </span>
             </div>
         </div>
 
@@ -339,8 +335,10 @@
             Department/School Curriculum Committee Chair (if required by Department/School):
 
             <div style="margin-top: 2.13%">
-                <input type="text" class="underlinedInput notrequired" id="depSigIn"
-                       onkeyup='validate( "#depSigIn", "#depSigInError", name_regex)'>
+                <div id="depSigIn" class="signatureCanvas">
+                    <div id="sig" class="underlinedInput signature"></div>
+                    <input type="hidden" id="chairSignature" name="chairSignature" class="notrequiered"/>
+                </div>
 
                 <span id="depSigInError" class="invalidInput hidden">
                     A signature is required from the Department/School Curriculum Committee Chair.
@@ -388,29 +386,17 @@
             </span>
             </div>
         </div>
+        <script type="text/javascript" src="scripts/flashcanvas.js"></script>
+        <script src="scripts/jSignature.min.js"></script>
 
 <!-- Chair/School Director Area -->
         <div class="block" id="block18">
             Chair/School Director:
 
-            <input type="file" class="underlinedInput signature" id="chairSigIn" name="chairSignature" required>
-            <img id="image" />
-
-            <script>
-                $(".signature").change(function () {
-                        var reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            // get loaded data and render thumbnail.
-                            document.getElementById("image").src = e.target.result;
-                        };
-
-                        // read the image file as a data URL.
-                        reader.readAsDataURL(this.files[0]);
-                    }
-
-                );
-            </script>
+            <div id="chairSigIn" class="signatureCanvas">
+                <div id="sig" class="underlinedInput signature"></div>
+                <input type="hidden" id="chairSignature" name="chairSignature"/>
+            </div>
 
 
             <input type="text" class="underlinedInput" id="chairNameIn"
@@ -468,14 +454,52 @@
         <br>
 
         <div id="buttons">
-            <button id="submit" type="submit">Submit Form</button>
+            <button id="submit" type="submit" id="btn_submit">Submit Form</button>
             <button type="reset">Reset Form</button>
         </div>
 
-        <input type="file" name="signature">
+
+
+
+        <script>
+            $(document).ready(function () {
+                    $(".signature").each(function () {
+                        $(this).jSignature({
+                            'background-color': 'transparent',
+                            'decor-color': 'transparent'
+                        });
+                    });
+                }
+            );
+//            $(function () {
+//                'use strict';
+//                var $sigdiv = $("#sig");
+//
+//                $sigdiv.jSignature({
+//                    'background-color': 'transparent',
+//                    'decor-color': 'transparent'
+//                });
+//
+//                //save data to hidden field before submiting the form
+//                $('#btn_submit').click(function () {
+//                    var datapair = $sigdiv.jSignature("getData", "image");
+//                    $('#chairSignature').val(datapair[1]);
+//                    //now submit form
+//                    document.forms[0].submit();
+//                });
+//            });
+
+
+            $('#sig').mousedown(function(event) {
+                if(event.which == 3){
+                    var $sigdiv = $("#sig");
+                    $sigdiv.jSignature("reset");
+                }
+            });
+        </script>
+
+
     </form>
-
-
 </div>
 
 <script>

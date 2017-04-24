@@ -288,6 +288,7 @@ ol li {
     margin-left: 21.5%;
     width: 30.4%;
     margin-right: 2%;
+    display:inline-block;
 }
 
 #depNameIn {
@@ -303,6 +304,11 @@ ol li {
 #chairSigIn {
     width: 30.4%;
     margin-right: 2%;
+    display:inline-block;
+}
+
+#sig{
+    display:inline;
 }
 
 #chairNameIn {
@@ -347,7 +353,21 @@ input {
     border: solid 1px red;
     color: red;
     background-color: white;
-    z-index: 10
+    z-index: 10;
 }
 
 .hidden { display: none; }
+
+ #image{
+     /*display:none;*/
+     max-width: 150px;
+     max-height: 50px;
+     border: none;
+     position: absolute;
+     z-index: -1;
+ }
+
+ .signatureCanvas{
+     position: relative;
+     top: 5px;
+ }
