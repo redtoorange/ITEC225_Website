@@ -85,10 +85,11 @@ body {
 }
 
 ol li {
-    font-weight:bold;
+    font-weight: bold;
 }
+
 .normal {
-    font-weight:normal;
+    font-weight: normal;
 }
 
 #transcriptInput {
@@ -328,13 +329,25 @@ ol li {
     position: relative;
     left: 76%;
 }
-#buttons{
-    text-align:  center;
-}
 
-input{
+#buttons {
     text-align: center;
 }
-input:invalid{
+
+input {
+    text-align: center;
+}
+
+.invalid {
     border: 2px solid red;
 }
+
+.invalidInput {
+    position: absolute;
+    border: solid 1px red;
+    color: red;
+    background-color: white;
+    z-index: 10
+}
+
+.hidden { display: none; }

@@ -1,0 +1,18 @@
+{
+    "student" : "Andrew McGuiness",
+    "department" : "Information Technology",
+    "idNumber" : "900818",
+    "phone" : "8049331266",
+    "GPA" : "4.0",
+    "credits" : "120",
+    "major" : "Computer Science",
+    "email" : "redtoorange@gmail.com",
+    "studyTitle" : "Something cool",
+    "transcript" : "Whatever Man",
+    "subject" : "ITEC",
+    "courseNumber" : "225",
+    "semester" : "Summer",
+    "year" : "17",
+    "summerSemester" : "Maymester"
+    
+}
