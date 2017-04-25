@@ -5,6 +5,36 @@ body {
     /*letter-spacing: .01em;*/
 }
 
+#department{
+    width: 26.25%;
+}
+#studentname{
+    width: 29.54%; margin-right: 1%
+}
+#studentID{
+    width: 12.5%; margin-right:1.66%
+}
+#phonenumber{
+    width: 15.63%
+}
+
+#GPA{
+    width: 14.38%; margin-right: 4.13%
+}
+
+#credits{
+    width: 16.88%
+}
+
+#major{
+    width: 29.38%; margin-right: 1.13%
+}
+
+#email{
+    width: 28.25%
+}
+
+
 #page {
     background: transparent;
 
@@ -92,6 +122,10 @@ ol li {
     font-weight: normal;
 }
 
+#studyTitle{
+    width: 67.63%
+}
+
 #transcriptInput {
     font-family: "Courier New";
     font-size: 16pt;
@@ -130,8 +164,20 @@ ol li {
     margin-bottom: 2%;
 }
 
+#subject{
+    width: 10.63%; margin-right: 2.13%;
+}
+
+#courseNumber{
+    width: 9.5%;
+}
+
 #blockNine {
     font-weight: bold;
+
+}
+
+#summerInput{
 
 }
 
@@ -151,6 +197,14 @@ ol li {
 #blockEleven {
     font-weight: bold;
     margin-bottom: 3%;
+}
+
+#creditHours{
+    width: 10.63%; margin-right: 1.5%;
+}
+
+#passfail{
+    width: 14.63%
 }
 
 #blockTwelve {
@@ -288,7 +342,7 @@ ol li {
     margin-left: 21.5%;
     width: 30.4%;
     margin-right: 2%;
-    display:inline-block;
+    /*height: 25px;*/
 }
 
 #depNameIn {
@@ -302,13 +356,10 @@ ol li {
 
 /*Chair Signature Stuff*/
 #chairSigIn {
+    /*height: 2%;*/
     width: 30.4%;
     margin-right: 2%;
-    display:inline-block;
-}
-
-#sig{
-    display:inline;
+    /*display: inline-block;*/
 }
 
 #chairNameIn {
@@ -367,7 +418,18 @@ input {
      z-index: -1;
  }
 
- .signatureCanvas{
+
+ .signatureDiv{
      position: relative;
+     margin: 0px;
+     padding: 0px;
      top: 5px;
+     /*height: 25px;*/
+     /*width: auto;*/
+     /*max-height: 5px;*/
+     display:inline-block;
+     /*right: 100px;*/
+
+     /*border: 2px dotted black;*/
+     background-color:lightgrey;
  }
