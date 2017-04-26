@@ -1,4 +1,3 @@
-<!--<!DOCTYPE HTML>-->
 <!--
  * Andrew McGuiness
  * Project 3
@@ -13,19 +12,22 @@
     
     
     <!-- Used by the jQuery UI date picker-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
     <!-- Core jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
     <!-- jQuery UI -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
     <!-- jSignature Canvases-->
     <script type="text/javascript" src="scripts/libs/flashcanvas.js"></script>
     <script type="text/javascript" src="scripts/libs/jSignature.min.js"></script>
     
     
-    <link href="styles/StudyForm.css" rel="stylesheet" type="text/css">
-    <script src="scripts/StudyForm.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/StudyForm.css">
+    <script type="text/javascript" src="scripts/StudyForm.js"></script>
 </head>
 
 <body>
@@ -497,31 +499,31 @@
 
     //Toggle the department fields required or not, depending on if any of the are filled.
     $(".notrequired").change(function () {
-        var empty = true;
-        console.log("changed required ");
+            var empty = true;
+            console.log("changed required ");
 
-        $(".notrequired").each(function () {
-            //Check the signature pad to see if it's empty
-            if ($(this).hasClass("signatureDiv")) {
-                if ($(this).jSignature('getData', 'native').length !== 0)
-                    empty = false;
-            }
-            //Check everything else
-            else {
-                if ($(this).val() !== "")
-                    empty = false;
-            }
-        });
+            $(".notrequired").each(function () {
+                //Check the signature pad to see if it's empty
+                if ($(this).hasClass("signatureDiv")) {
+                    if ($(this).jSignature('getData', 'native').length !== 0)
+                        empty = false;
+                }
+                //Check everything else
+                else {
+                    if ($(this).val() !== "")
+                        empty = false;
+                }
+            });
 
-        //Add the required property to everything if ant are filled, remove it if none are filled
-        if (empty)
-            $(".notrequired").each(function () {
-                $(".notrequired").prop("required", false);
-            });
-        else
-            $(".notrequired").each(function () {
-                $(".notrequired").prop("required", true);
-            });
+            //Add the required property to everything if ant are filled, remove it if none are filled
+            if (empty)
+                $(".notrequired").each(function () {
+                    $(".notrequired").prop("required", false);
+                });
+            else
+                $(".notrequired").each(function () {
+                    $(".notrequired").prop("required", true);
+                });
         }
     );
 
@@ -543,6 +545,13 @@
         //When submit is clicked, the data from each signature pad is bound to it's matching hidden input
         $('#btn_submit').on("click", function (e) {
             var valid = true;
+
+            if( allYearsEmpty() ){
+                alert("A semester is required");
+                e.preventDefault();
+                return;
+            }
+
 
             //See if all of the signature pads are filled.
             $(".signatureDiv").each(function () {
@@ -582,14 +591,14 @@
     //Bind validateYears to the semester year text inputs
     $(".semester").keyup(validateYears);
 
-    //Bind validateCheckboxes to the summer semester checkboxes.
-    $(".checker").change(validateCheckboxes);
+    //Bind validateCheckers to the summer semester checkboxes.
+    $(".checker").change(validateCheckers);
 
     //Hide all of the invalid input panels before the page loads.
     $(document).ready(function () {
-        $(".invalidInput").hide();
-        $(".hidden").removeClass(".hidden");
-        $("input").attr('autocomplete', 'off');
+            $(".invalidInput").hide();
+            $(".hidden").removeClass(".hidden");
+            $("input").attr('autocomplete', 'off');
         }
     );
 

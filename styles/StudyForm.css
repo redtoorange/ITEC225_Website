@@ -2,41 +2,45 @@ body {
     font-family: "Times New Roman";
     font-size: 16pt;
     background: white;
-    /*letter-spacing: .01em;*/
 }
 
-#department{
+#department {
     width: 26.25%;
 }
-#studentname{
-    width: 29.54%; margin-right: 1%
+
+#studentname {
+    width: 29.54%;
+    margin-right: 1%
 }
-#studentID{
-    width: 12.5%; margin-right:1.66%
+
+#studentID {
+    width: 12.5%;
+    margin-right: 1.66%
 }
-#phonenumber{
+
+#phonenumber {
     width: 15.63%
 }
 
-#GPA{
-    width: 14.38%; margin-right: 4.13%
+#GPA {
+    width: 14.38%;
+    margin-right: 4.13%
 }
 
-#credits{
+#credits {
     width: 16.88%
 }
 
-#major{
-    width: 29.38%; margin-right: 1.13%
+#major {
+    width: 29.38%;
+    margin-right: 1.13%
 }
 
-#email{
+#email {
     width: 28.25%
 }
 
-
 #page {
-
     background: transparent;
 
     border: 0;
@@ -48,8 +52,8 @@ body {
 
     margin: auto;
 
-    page-break-after: always; /* Always insert page break after this element */
-    page-break-inside: avoid; /* Please don't break my page content up browser */
+    page-break-after: always;
+    page-break-inside: avoid;
 }
 
 #header {
@@ -75,7 +79,6 @@ body {
 }
 
 .block {
-    /*    margin-left: 0.150in;*/
 }
 
 #blockOne {
@@ -123,7 +126,7 @@ ol li {
     font-weight: normal;
 }
 
-#studyTitle{
+#studyTitle {
     width: 67.63%
 }
 
@@ -168,11 +171,12 @@ ol li {
     margin-bottom: 2%;
 }
 
-#subject{
-    width: 10.63%; margin-right: 2.13%;
+#subject {
+    width: 10.63%;
+    margin-right: 2.13%;
 }
 
-#courseNumber{
+#courseNumber {
     width: 9.5%;
 }
 
@@ -181,7 +185,7 @@ ol li {
 
 }
 
-#summerInput{
+#summerInput {
 
 }
 
@@ -203,11 +207,12 @@ ol li {
     margin-bottom: 3%;
 }
 
-#creditHours{
-    width: 10.63%; margin-right: 1.5%;
+#creditHours {
+    width: 10.63%;
+    margin-right: 1.5%;
 }
 
-#passfail{
+#passfail {
     width: 14.63%
 }
 
@@ -264,13 +269,10 @@ ol li {
 
 #block14 {
     font-weight: bold;
-    /*margin-bottom: 2%;*/
 }
 
 #block15 {
-
     font-weight: bold;
-    /*margin-bottom: .5%;*/
 }
 
 #block16 {
@@ -284,7 +286,6 @@ ol li {
 }
 
 #block18 {
-    /*margin-bottom: 1.75%;*/
     font-weight: bold;
 }
 
@@ -361,10 +362,8 @@ ol li {
 
 /*Chair Signature Stuff*/
 #chairSigIn {
-    /*height: 2%;*/
     width: 30.4%;
     margin-right: 2%;
-    /*display: inline-block;*/
 }
 
 #chairNameIn {
@@ -412,44 +411,33 @@ input {
     z-index: 10;
 }
 
-.hidden { display: none; }
-
- #image{
-     /*display:none;*/
-     max-width: 150px;
-     max-height: 50px;
-     border: none;
-     position: absolute;
-     z-index: -1;
- }
-
-
- .signatureDiv{
-     position: relative;
-     margin: 0px;
-     padding: 0px;
-     top: 5px;
-     /*height: 25px;*/
-     /*width: auto;*/
-     /*max-height: 5px;*/
-     display:inline-block;
-     /*right: 100px;*/
-
-     /*border: 2px dotted black;*/
-     background-color:lightgrey;
- }
-
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    red;
+.hidden {
+    display: none;
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    red;
-    opacity:  1;
+
+.signatureDiv {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    top: 5px;
+    display: inline-block;
+    background-color: lightgrey;
 }
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    red;
-    opacity:  1;
+
+::-webkit-input-placeholder {
+    color: red;
 }
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color:    red;
+
+:-moz-placeholder {
+    color: red;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    color: red;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: red;
 }

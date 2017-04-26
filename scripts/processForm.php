@@ -24,6 +24,3 @@ else {
     //output errors
     echo $form->getErrors();
 }
-
-
-
